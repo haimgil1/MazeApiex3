@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="loginStyle.css" />
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="MenuStyle.css" rel="stylesheet" />
+    <script src="jquery-3.2.1.js"></script>
+    <meta charset="utf-8" />
+    <title>Setting</title>
+</head>
+<body>
+    <nav></nav>
+    <script>$("nav").load("Menu.html");</script>
+    <div class="container">
+        <div class="row">
+            <div class="panel-body">
+                <form method="POST" action="#" role="form" class="form-signin">
+                    <div>
+                        <h3 class="form-signin-heading">Setting</h3>
+                        <hr class="colorgraph"><br>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="settingName">Name</label>
+                        <input id="settingName" type="text" maxlength="50" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="settingRows">Rows</label>
+                        <input id="settingRows" type="text" required="" maxlength="50" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="settingCols">Cols</label>
+                        <input id="settingCols" type="text" required="" maxlength="25" class="form-control" length="40">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label" for="settingAlgo">Search Algo</label>
+                        <select id="settingAlgo">
+                            <option value="0">BFS</option>
+                            <option value="1">DFS</option>
+                        </select>
+                    </div>
+
+                    <div style="width:400px;">
+                        <div style="float: left; width: 150px">
+                            <button type="submit"  id="submitbtn" class="btn btn-default">Submit</button>
+                        </div>
+                        <div style="float: right; width: 150px">
+                            <button type="submit" onclick="location.href='MainMenu.html'" id="canceltbtn" class="btn btn-default">Cancel</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="setting.js"></script>
+</body>
+</html>
+
+
