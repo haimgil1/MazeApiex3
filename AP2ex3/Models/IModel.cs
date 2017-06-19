@@ -16,7 +16,7 @@ namespace AP2ex3.Models
         //   void AddWaitingGame(string name, int rows, int cols);
         List<string> GetList();
         Maze GetMaze(string name, int rows, int cols);
-        void AddStartGame(Game game, string name);
+        void AddStartGame(string name, int rows, int cols, TcpClient client);
 
         void DeleteGameFromPlayingGames(string name);
         Game FindGameByClient(TcpClient client);

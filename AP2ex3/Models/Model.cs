@@ -146,8 +146,9 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="game">The game.</param>
         /// <param name="name">The name.</param>
-        public void AddStartGame(Game game, string name)
+        public void AddStartGame(string name, int rows, int cols, TcpClient client)
         {
+            Game game = new Game(client, this.GetMaze(name, rows, cols));
             startGames.Add(name, game);
         }
         /// <summary>

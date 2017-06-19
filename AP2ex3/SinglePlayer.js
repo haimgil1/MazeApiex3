@@ -1,4 +1,33 @@
-﻿$("nav").load("Menu.html");
+﻿window.onload = function () {
+    alert(" Alert inside my_code function");
+    if (!localStorage.length) {
+        localStorage.setItem("Rows", "10");
+        localStorage.setItem("Cols", "10");
+        localStorage.setItem("Algorithm", "BFS");
+    }
+    document.getElementById("rows").value = localStorage.getItem("Rows");
+    document.getElementById("cols").value = localStorage.getItem("Cols");
+    document.getElementById("searchAlgorithem").text = localStorage.getItem("Algorithem");;
+}
+
+
+$(document).ready(function(){
+    $("#settingsForm").submit(function(event)
+    {
+        event.preventDefault();
+        if(inputCheck() == true)
+        {
+            localStorage.setItem("rows", $("#rows").val());
+            localStorage.setItem("cols", $("#cols").val());
+            localStorage.setItem("algo", $("#Algorithm").val());
+            alert("Settings Saved");
+        }
+
+    });
+});
+
+
+$("nav").load("Menu.html");
 
 var myMazeBoard;
 var timer;
@@ -61,6 +90,7 @@ $("#startGame").click(function () {
                     }
 
                     if (maze.Maze[(i * cols) + j] == 1) {
+                        currMaze.context.fillStyle = "Black";
                         currMaze.context.fillRect(cellWidth * j, cellHeight * i,
                             cellWidth, cellHeight);
                     }
@@ -69,6 +99,27 @@ $("#startGame").click(function () {
             }
     };
 
+    function clearMaze(mazeCanvas, currMaze) {
+        var maze = currMaze.maze;
+        currMaze.context = mazeCanvas.getContext("2d");
+        var rows = maze.Rows;
+        var cols = maze.Cols;
+        currMaze.cellWidth = mazeCanvas.width / cols;
+        currMaze.cellHeight = mazeCanvas.height / rows;
+        var cellWidth = mazeCanvas.width / cols;
+        var cellHeight = mazeCanvas.height / rows;
+        for (var i = 0; i < rows; i++) {
+            for (var j = 0; j < cols; j++) {
+                //currMaze.context.strokeStyle = "#White";
+                //currMaze.context.strokeRect(cellWidth * j, cellHeight * i,
+                //    cellWidth, cellHeight);
+                currMaze.context.fillStyle = "White";
+                currMaze.context.fillRect(cellWidth * j, cellHeight * i,
+                    cellWidth, cellHeight);
+
+            }
+        }
+    };
 
 
     $.fn.mazeBoard = function (data, callBackOnMove) {
@@ -87,6 +138,7 @@ $("#startGame").click(function () {
             cellHeight: 0,
             gameOn: true
         };
+        clearMaze(this[0], currentBoard);
         drawMaze(this[0], currentBoard);
         document.addEventListener("keydown", callBackOnMove);
         return currentBoard;
