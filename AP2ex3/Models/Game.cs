@@ -15,6 +15,9 @@ namespace AP2ex3.Models
     /// </summary>
     public class Game
     {
+
+
+
         private string client1;
         private string client2;
         private Maze maze;
