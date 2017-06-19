@@ -7,17 +7,18 @@ using System.Net.Sockets;
 using MazeGeneratorLib;
 using MazeLib;
 using System.IO;
+using Microsoft.AspNet.SignalR.Hubs;
 
 namespace AP2ex3.Models
 {
+    public delegate void ChangedEventHandler(object sender, EventArgs e);
+
+    public delegate void ClienetPlayedEventHandler(Direction direction);
     /// <summary>
     /// Game class
     /// </summary>
     public class Game
     {
-
-
-
         private string client1;
         private string client2;
         private Maze maze;

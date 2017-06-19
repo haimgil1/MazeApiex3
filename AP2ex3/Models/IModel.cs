@@ -19,7 +19,7 @@ namespace AP2ex3.Models
         void AddStartGame(string name, int rows, int cols, string clientID);
 
         void DeleteGameFromPlayingGames(string name);
-        Game FindGameByClient(TcpClient client);
+        Game FindGameByClient(string client);
         bool IsContainMazeForSolution(string name);
         bool IsGameAlreadyExist(string name);
         bool IsGameInWaitingList(string name);

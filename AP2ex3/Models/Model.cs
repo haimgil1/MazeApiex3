@@ -210,7 +210,7 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="client">The client.</param>
         /// <returns></returns>
-        public Game FindGameByClient(TcpClient client)
+        public Game FindGameByClient(string client)
         {
             playingMutex.WaitOne();
             foreach (Game game in this.playingGames.Values)
