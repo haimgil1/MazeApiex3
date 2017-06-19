@@ -8,6 +8,8 @@ window.onload = function () {
         localStorage.setItem("Cols", "10");
         localStorage.setItem("Algorithm", "BFS");
     }
+
+
     document.getElementById("settingRows").value = localStorage.getItem("Rows");
     document.getElementById("settingCols").value = localStorage.getItem("Cols");
     //document.getElementById("settingAlgo").text = localStorage.getItem("Algorithm");;
