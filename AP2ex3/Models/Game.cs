@@ -15,15 +15,15 @@ namespace AP2ex3.Models
     /// </summary>
     public class Game
     {
-        private TcpClient client1;
-        private TcpClient client2;
+        private string client1;
+        private string client2;
         private Maze maze;
         /// <summary>
         /// Initializes a new instance of the <see cref="Game"/> class.
         /// </summary>
         /// <param name="client">The client.</param>
         /// <param name="maze">The maze.</param>
-        public Game(TcpClient client, Maze maze)
+        public Game(string client, Maze maze)
         {
             this.client1 = client;
             this.maze = maze;
@@ -32,7 +32,7 @@ namespace AP2ex3.Models
         /// Joins the specified client.
         /// </summary>
         /// <param name="client">The client.</param>
-        public void Join(TcpClient client)
+        public void Join(string client)
         {
             this.client2 = client;
             this.SendToClients();
@@ -42,7 +42,7 @@ namespace AP2ex3.Models
         /// Gets the first client.
         /// </summary>
         /// <returns></returns>
-        public TcpClient GetFirstClient()
+        public string GetFirstClient()
         {
             return this.client1;
         }
@@ -50,7 +50,7 @@ namespace AP2ex3.Models
         /// Gets the second client.
         /// </summary>
         /// <returns></returns>
-        public TcpClient GetSecondClient()
+        public string GetSecondClient()
         {
             return this.client2;
         }
@@ -59,16 +59,16 @@ namespace AP2ex3.Models
         /// </summary>
         public void SendToClients()
         {
-            NetworkStream stream = client1.GetStream();
-            StreamReader reader = new StreamReader(stream);
-            StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
-            writer.Flush();
-            stream = client2.GetStream();
-            reader = new StreamReader(stream);
-            writer = new StreamWriter(stream);
-            writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
-            writer.Flush();
+            //NetworkStream stream = client1.GetStream();
+            //StreamReader reader = new StreamReader(stream);
+            //StreamWriter writer = new StreamWriter(stream);
+            //writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
+            //writer.Flush();
+            //stream = client2.GetStream();
+            //reader = new StreamReader(stream);
+            //writer = new StreamWriter(stream);
+            //writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
+            //writer.Flush();
         }
         /// <summary>
         /// Gets the maze.
@@ -83,7 +83,7 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="client">The client.</param>
         /// <returns></returns>
-        public TcpClient GetOpponent(TcpClient client)
+        public string GetOpponent(string client)
         {
             if (client == client1)
             {

@@ -1,30 +1,20 @@
-﻿window.onload = function () {
-    alert(" Alert inside my_code function");
+﻿
+window.onload = function () {
+
     if (!localStorage.length) {
         localStorage.setItem("Rows", "10");
         localStorage.setItem("Cols", "10");
-        localStorage.setItem("Algorithm", "BFS");
+        localStorage.setItem("Algorithm", "1");
     }
-    document.getElementById("rows").value = localStorage.getItem("Rows");
-    document.getElementById("cols").value = localStorage.getItem("Cols");
-    document.getElementById("searchAlgorithem").text = localStorage.getItem("Algorithem");;
+
+    $("#rows").val(localStorage.Rows);
+    $("#cols").val(localStorage.Cols);
+    $("#searchAlgorithem").val(localStorage.Algorithm);
+    // document.getElementById("settingRows").value = localStorage.getItem("Rows");
+    //document.getElementById("settingCols").value = localStorage.getItem("Cols");
+    //document.getElementById("settingAlgo").text = localStorage.getItem("Algorithm");
 }
 
-
-$(document).ready(function(){
-    $("#settingsForm").submit(function(event)
-    {
-        event.preventDefault();
-        if(inputCheck() == true)
-        {
-            localStorage.setItem("rows", $("#rows").val());
-            localStorage.setItem("cols", $("#cols").val());
-            localStorage.setItem("algo", $("#Algorithm").val());
-            alert("Settings Saved");
-        }
-
-    });
-});
 
 
 $("nav").load("Menu.html");
