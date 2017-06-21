@@ -8,7 +8,7 @@ namespace AP2ex3.Models
 {
     public interface IModel
     {
-        
+
         Maze GenerateMaze(string name, int rows, int cols);
         void DeleteSingleGame(string name);
         string GetBFSSolution(string name);
@@ -16,7 +16,7 @@ namespace AP2ex3.Models
         //   void AddWaitingGame(string name, int rows, int cols);
         List<string> GetList();
         Maze GetMaze(string name, int rows, int cols);
-        void AddStartGame(string name, int rows, int cols, string clientID);
+        Game AddStartGame(string name, int rows, int cols, string clientID);
 
         void DeleteGameFromPlayingGames(string name);
         Game FindGameByClient(string client);
@@ -25,7 +25,7 @@ namespace AP2ex3.Models
         bool IsGameInWaitingList(string name);
 
         Game GetGameFromWaitingList(string name);
-        void JoinToGame(string name);
+        Game JoinToGame(string name, string id);
 
         void StartAndPlayingMutexWaitOn();
         void StartAndPlayingMutexRealese();

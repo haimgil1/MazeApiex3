@@ -54,7 +54,7 @@ namespace AP2ex3.Models
         {
             Maze maze = this.GetMaze(name, rows, cols);
             mazes.Add(name, maze);
-      
+
             return maze;
 
         }
@@ -85,7 +85,7 @@ namespace AP2ex3.Models
 
             if (solutionsBFS.ContainsKey(name))
             {
-                return MazeAdapter.ToString (solutionsBFS[name]);
+                return MazeAdapter.ToString(solutionsBFS[name]);
             }
             Solution<Position> solution = BFS.Search(mazeObjectAdapter);
             State<Position>.StatePool.Clear();
@@ -102,7 +102,7 @@ namespace AP2ex3.Models
         {
             dfsMutex.WaitOne();
             ISearchable<Position> mazeObjectAdapter = new MazeAdapter(mazes[name]);
-        
+
             if (solutionsDFS.ContainsKey(name))
             {
                 return MazeAdapter.ToString(solutionsDFS[name]);
@@ -112,7 +112,7 @@ namespace AP2ex3.Models
             State<Position>.StatePool.Clear();
             dfsMutex.ReleaseMutex();
             return MazeAdapter.ToString(solution);
-           // return solution;
+            // return solution;
         }
         /// <summary>
         /// Determines whether [is contain maze for solution] [the specified name].
@@ -146,10 +146,11 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="game">The game.</param>
         /// <param name="name">The name.</param>
-        public void AddStartGame(string name, int rows, int cols, string clientID)
+        public Game AddStartGame(string name, int rows, int cols, string clientID)
         {
             Game game = new Game(clientID, this.GetMaze(name, rows, cols));
             startGames.Add(name, game);
+            return game;
         }
         /// <summary>
         /// Determines whether [is game already exist] [the specified name].
@@ -177,12 +178,13 @@ namespace AP2ex3.Models
         /// Joins to game.
         /// </summary>
         /// <param name="name">The name.</param>
-        public void JoinToGame(string name)
+        public Game JoinToGame(string name, string id)
         {
             Game game = this.startGames[name];
+            game.Join(id);
             this.playingGames[name] = game;
             this.startGames.Remove(name);
-
+            return game;
         }
         /// <summary>
         /// Gets the game from waiting list.
@@ -192,7 +194,7 @@ namespace AP2ex3.Models
         public Game GetGameFromWaitingList(string name)
         {
             return this.startGames[name]; ;
-        
+
         }
         /// <summary>
         /// Deletes the game from playing games.

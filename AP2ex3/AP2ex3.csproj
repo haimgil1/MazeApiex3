@@ -134,6 +134,7 @@
     <Content Include="Login.html" />
     <Content Include="Login.js" />
     <Content Include="loginStyle.css" />
+    <Content Include="mazeBoard.js" />
     <Content Include="Menu.html" />
     <Content Include="Menu.js" />
     <Content Include="MenuStyle.css" />
@@ -167,7 +168,6 @@
     <Content Include="singelPlayerStyle.css" />
     <Content Include="SinglePlayer.html" />
     <Content Include="SinglePlayer.js" />
-    <Content Include="test3.js" />
     <Content Include="UserRankings.css" />
     <Content Include="UserRankings.html" />
     <Content Include="UserRankings.js" />
@@ -178,6 +178,7 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MultiPlayerController.cs" />
+    <Compile Include="Controllers\MultiPlayerHub1.cs" />
     <Compile Include="Controllers\SingleGameController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -192,6 +193,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\IModel.cs" />
     <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\MultiPlayerHub.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="objectadapter\AdapterSolution.cs" />
     <Compile Include="objectadapter\MazeAdapter.cs" />
