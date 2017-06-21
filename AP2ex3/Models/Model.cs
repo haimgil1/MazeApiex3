@@ -146,10 +146,11 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="game">The game.</param>
         /// <param name="name">The name.</param>
-        public void AddStartGame(string name, int rows, int cols, string clientID)
+        public Game AddStartGame(string name, int rows, int cols, string clientID)
         {
             Game game = new Game(clientID, this.GetMaze(name, rows, cols));
             startGames.Add(name, game);
+            return game;
         }
         /// <summary>
         /// Determines whether [is game already exist] [the specified name].
@@ -177,12 +178,13 @@ namespace AP2ex3.Models
         /// Joins to game.
         /// </summary>
         /// <param name="name">The name.</param>
-        public void JoinToGame(string name)
+        public Game JoinToGame(string name, string id)
         {
             Game game = this.startGames[name];
+            game.Join(id);
             this.playingGames[name] = game;
             this.startGames.Remove(name);
-
+            return game;
         }
         /// <summary>
         /// Gets the game from waiting list.

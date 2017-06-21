@@ -3,10 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <script src="jquery-3.2.1.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="signalr/hubs"></script>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="MultiPlayer.css" />
     <link href="MenuStyle.css" rel="stylesheet" />
-    <script src="jquery-3.2.1.js"></script>
+
 </head>
 <body>
     <div class="container"></div>
@@ -20,9 +24,8 @@
             <div class="form-group">
                 <label for="chooseGame" class="col-sm-2 control-label">Game</label>
                 <div class="col-sm-10">
-                    <select class="form-control" id="searchAlgorithem">
-                        <option value="0">Game1</option>
-                        <option value="1">Game2</option>
+                    <select class="form-control" id="Games">
+
                     </select>
                     <br />
                     <div class="row">
@@ -59,7 +62,14 @@
             </div>
         </div>
     </div>
+    <div class="modal"></div>
+    <img class="picture" id="minion" src="pictures/minion.jpg" width="1" height="1">
+    <img class="picture" id="exit" src="pictures/exit.jpg" width="1" height="1">
 
     <script src="MultiPlayer.js"></script>
+    <script src="mazeBoard.js"></script>
+
+
+
 </body>
 </html>
