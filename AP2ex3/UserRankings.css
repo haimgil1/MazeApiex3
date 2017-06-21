@@ -1,0 +1,11 @@
+﻿body {
+}
+.loader {
+    position: fixed;
+    z-index: 1000;
+    top:auto;
+    left:auto;
+    width: 100%;
+    height: 100%;
+    background: rgba( 255, 255, 255, .8 ) url('https://upload.wikimedia.org/wikipedia/commons/b/b1/Loading_icon.gif') 50% 50% no-repeat;
+}

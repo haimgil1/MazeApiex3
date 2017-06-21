@@ -2,6 +2,7 @@
 }
 #rightDiv {
     float: right;
- }
-#myNav {
+}
+.hidden {
+    display: none;
 }
