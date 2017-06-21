@@ -11,11 +11,9 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace AP2ex3.Models
 {
-    //public delegate void ChangedEventHandler(object sender, EventArgs e);
+    public delegate void ChangedEventHandler(object sender, EventArgs e);
 
-    //public delegate void ClienetPlayedEventHandler(Direction direction);
-
-
+    public delegate void ClienetPlayedEventHandler(Direction direction);
     /// <summary>
     /// Game class
     /// </summary>
@@ -23,14 +21,7 @@ namespace AP2ex3.Models
     {
         private string client1;
         private string client2;
-        private Direction guestCurrentDirection;
-        private Direction otherPlayerCurrDirection;
         private Maze maze;
-
-        //public event ChangedEventHandler SomebodyClosedTheGameEvent;
-        //public event ClienetPlayedEventHandler GuestPlayedEvent;
-        //public event ClienetPlayedEventHandler HostPlayActionOccurd;
-
         /// <summary>
         /// Initializes a new instance of the <see cref="Game"/> class.
         /// </summary>
@@ -41,40 +32,6 @@ namespace AP2ex3.Models
             this.client1 = client;
             this.maze = maze;
         }
-
-
-        public Maze Maze
-        {
-            get { return maze; }
-            set
-            {
-                maze = value;
-            }
-        }
-
-
-        //public Direction OtherPlayerCurrDirection
-        //{
-        //    get { return otherPlayerCurrDirection; }
-        //    set
-        //    {
-        //        otherPlayerCurrDirection = value;
-        //        HostPlayActionOccurd?.Invoke(otherPlayerCurrDirection);
-        //    }
-        //}
-
-
-        //public Direction GuestCurrentDirection
-        //{
-        //    get { return guestCurrentDirection; }
-        //    set
-        //    {
-        //        guestCurrentDirection = value;
-        //        GuestPlayedEvent?.Invoke(guestCurrentDirection);
-        //    }
-        //}
-
-
         /// <summary>
         /// Joins the specified client.
         /// </summary>
@@ -82,7 +39,7 @@ namespace AP2ex3.Models
         public void Join(string client)
         {
             this.client2 = client;
-           // this.SendToClients();
+            this.SendToClients();
 
         }
         /// <summary>
@@ -140,19 +97,3 @@ namespace AP2ex3.Models
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -16,7 +16,7 @@ namespace AP2ex3.Models
         //   void AddWaitingGame(string name, int rows, int cols);
         List<string> GetList();
         Maze GetMaze(string name, int rows, int cols);
-        Game AddStartGame(string name, int rows, int cols, string clientID);
+        void AddStartGame(string name, int rows, int cols, string clientID);
 
         void DeleteGameFromPlayingGames(string name);
         Game FindGameByClient(string client);
@@ -25,7 +25,7 @@ namespace AP2ex3.Models
         bool IsGameInWaitingList(string name);
 
         Game GetGameFromWaitingList(string name);
-        Game JoinToGame(string name,string id);
+        void JoinToGame(string name);
 
         void StartAndPlayingMutexWaitOn();
         void StartAndPlayingMutexRealese();
