@@ -53,8 +53,11 @@ namespace AP2ex3.Models
         Maze IModel.GenerateMaze(string name, int rows, int cols)
         {
             Maze maze = this.GetMaze(name, rows, cols);
+            if (mazes.ContainsKey(name))
+            {
+                return null;
+            }
             mazes.Add(name, maze);
-
             return maze;
 
         }

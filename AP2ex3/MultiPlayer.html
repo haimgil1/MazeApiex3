@@ -10,7 +10,6 @@
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="MultiPlayer.css" />
     <link href="MenuStyle.css" rel="stylesheet" />
-
 </head>
 <body>
     <div class="container"></div>
@@ -19,7 +18,6 @@
     <div class="col-sm-12 text-center">
         <canvas id="myMazeCanvas" width="330" height="330" style="border:2px black solid"></canvas>
         <canvas id="otherMazeCanvas" width="330" height="330" style="border:2px black solid"></canvas>
-
         <div class="col-sm-3 form-horizontal">
             <div class="form-group">
                 <label for="chooseGame" class="col-sm-2 control-label">Game</label>
@@ -42,14 +40,14 @@
                 <div class="form-group">
                     <label for="rows" class="col-sm-2 control-label">rows</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="rows" id="rows" />
+                        <input type="number" class="form-control" name="rows" id="rows" />
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="cols" class="col-sm-2 control-label">cols</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="cols" id="cols" />
+                        <input type="number" class="form-control" name="cols" id="cols" />
                     </div>
 
                 </div>
@@ -60,7 +58,8 @@
             </div>
         </div>
     </div>
-    <div class="modal"></div>
+    <div class="modal">
+    </div>
     <img class="picture" id="minion" src="pictures/minion.jpg" width="1" height="1">
     <img class="picture" id="exit" src="pictures/exit.jpg" width="1" height="1">
 

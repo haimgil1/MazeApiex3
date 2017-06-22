@@ -23,7 +23,7 @@ namespace AP2ex3.Controllers
         public IQueryable<User> GetUsers()
         {
 
-            return db.Users.OrderBy(u => u.Wins - u.Losses);
+            return db.Users.OrderBy(u => u.Losses - u.Wins);
         }
         [HttpPost]
         [Route("api/user/login")]
@@ -55,23 +55,27 @@ namespace AP2ex3.Controllers
 
             return Ok(user);
         }
-        
-        // PUT: api/Users/5
+
+        // PUT: api/Users/Winning/5
+        [Route("api/Users/{id}/{winOrLose}")]
         [ResponseType(typeof(void))]
-        public async Task<IHttpActionResult> PutUser(string id, User user)
+        public async Task<IHttpActionResult> PutUserWinning(string id, string winOrLose)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != user.UserName)
+            User user = await db.Users.FindAsync(id);
+            if(winOrLose == "Win")
             {
-                return BadRequest();
+                user.Wins++;
+            }
+            else
+            {
+                user.Losses++;
             }
 
             db.Entry(user).State = EntityState.Modified;
-
             try
             {
                 await db.SaveChangesAsync();
@@ -87,7 +91,6 @@ namespace AP2ex3.Controllers
                     throw;
                 }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 

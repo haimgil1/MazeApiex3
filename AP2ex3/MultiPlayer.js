@@ -30,6 +30,7 @@ window.onload = function () {
 
 
 multiGame.client.sendMaze = function (recData) {
+    $body.removeClass("loading");
     myMazeBoard = $("#myMazeCanvas").mazeBoard(recData, movePlayer, "draw");
     $(document).attr("title", name);
     otherMazeBoard = $("#otherMazeCanvas").mazeBoard(recData, null, "draw");
@@ -41,15 +42,29 @@ multiGame.client.sendDirection = function (row, col) {
     drawPreviousPos(otherMazeBoard);
     setCurrentPos(otherMazeBoard, row, col);
     if (otherMazeBoard.exitPos.Row == row && otherMazeBoard.exitPos.Col == col) {
-        alert("Other player won :(");
-        otherMazeBoard.gameOn = false;
+
+        var userName = sessionStorage.getItem("userName");
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "/api/Users/" + userName + "/Looser",
+            success: function (recData) {
+                alert("Other player won :(");
+                otherMazeBoard.gameOn = false;
+                window.location.replace("MainMenu.html");
+
+            },
+            error: function (result) { alert("error " + result[0]); }
+        });
+
+
     }
 };
 
 multiGame.client.closeGame = function () {
     alert("Game Over");
     window.location.replace("MainMenu.html");
-
 };
 
 
@@ -66,8 +81,9 @@ $("#startGame").click(function () {
         var cols = $("#cols").val();
 
         multiGame.server.startGame(name, rows, cols);
-
-
+        $body.addClass("loading");
+        alert("waiting for other player to join...");
+        
     });
 
 
@@ -176,11 +192,24 @@ function moveOneStep(key) {
 
     // Check if got to the end point.
     if (myMazeBoard.exitPos.Row == newRow && myMazeBoard.exitPos.Col == newCol) {
-        alert("You won!!!");
-        myMazeBoard.gameOn = false;
-        $.connection.hub.start().done(function () {
-            multiGame.server.closeTheGame(myMazeBoard.maze.Name);
+        var userName = sessionStorage.getItem("userName");
+        $.ajax({
+            type: "PUT",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            url: "/api/Users/" + userName + "/Win",
+            success: function (recData) {
+                alert("You won!!!");
+                myMazeBoard.gameOn = false;
+                $.connection.hub.start().done(function () {
+                    multiGame.server.closeTheGame(myMazeBoard.maze.Name);
+                });
+                window.location.replace("MainMenu.html");
+
+            },
+            error: function (result) { alert("error " + result[0]); }
         });
+
         window.location.replace("MainMenu.html");
     }
 }

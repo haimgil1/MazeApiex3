@@ -1,4 +1,5 @@
-﻿
+﻿$("nav").load("Menu.html");
+
 window.onload = function () {
     
     if (!localStorage.length) {

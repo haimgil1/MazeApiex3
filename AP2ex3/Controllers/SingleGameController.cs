@@ -23,6 +23,10 @@ namespace AP2ex3.Controllers
         {
             Maze maze = model.GenerateMaze(name, rows, cols);
             //Maze maze1 = Maze.FromJSON(maze);
+            if(maze== null)
+            {
+                return Conflict();
+            }
             JObject obj = JObject.Parse(maze.ToJSON());
             return Ok(obj);
         }

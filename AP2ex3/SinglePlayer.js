@@ -15,9 +15,6 @@ window.onload = function () {
 }
 
 
-
-
-
 var myMazeBoard;
 var timer;
 var counter = 0;
@@ -48,7 +45,14 @@ $("#startGame").click(function () {
             myMazeBoard = $("#mazeCanvas").mazeBoard(recData, movePlayer, operation);
             $(document).attr("title", name);
         },
-        error: function (result) { alert("error " + result[0]); }
+        error: function (jqXHR, textStatus, errorThrown) {
+            //            alert("error " + result[0]);
+            if (jqXHR.status === 409) {
+                alert("this game is already exist, please choose another name");
+            } else {
+                alert("sorry, we have some errors connecting the server, please try again later..");
+            }
+        }
     });
 });
 
