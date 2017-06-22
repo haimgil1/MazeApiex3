@@ -81,6 +81,7 @@ namespace AP2ex3.Models
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns></returns>
+        /// 
         string IModel.GetBFSSolution(string name)
         {
             bfsMutex.WaitOne();

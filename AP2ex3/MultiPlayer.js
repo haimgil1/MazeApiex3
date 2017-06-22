@@ -5,15 +5,6 @@ var myMazeBoard;
 var otherMazeBoard;
 $("nav").load("Menu.html");
 
-
-
-$body = $("body");
-$(document).on({
-    ajaxStart: function () { $body.addClass("loading"); },
-    ajaxStop: function () { $body.removeClass("loading"); }
-});
-
-
 window.onload = function () {
 
     if (!localStorage.length) {
@@ -28,9 +19,8 @@ window.onload = function () {
     //document.getElementById("settingAlgo").text = localStorage.getItem("Algorithm");
 }
 
-
 multiGame.client.sendMaze = function (recData) {
-    $body.removeClass("loading");
+    $("body").removeClass("loading");
     myMazeBoard = $("#myMazeCanvas").mazeBoard(recData, movePlayer, "draw");
     $(document).attr("title", name);
     otherMazeBoard = $("#otherMazeCanvas").mazeBoard(recData, null, "draw");
@@ -79,28 +69,15 @@ $("#startGame").click(function () {
         var name = $("#mazeName").val();    
         var rows = $("#rows").val();
         var cols = $("#cols").val();
-
+        if (name === "") {
+            alert("please write a name for the game");
+            return;
+        }
         multiGame.server.startGame(name, rows, cols);
-        $body.addClass("loading");
+        $("body").addClass("loading");
         alert("waiting for other player to join...");
         
     });
-
-
-
-    //$.ajax({
-    //    type: "GET",
-    //    contentType: "application/json; charset=utf-8",
-    //    dataType: "json",
-    //    url: "../api/MultiPlayer/StartMultiPlayer/" + name + "/" + rows + "/" + cols + "/" + Context.ConnectionId,
-    //    success: function (recData) {
-    //        myMazeBoard = $("#myMazeCanvas").mazeBoard(recData, movePlayer, "draw");
-    //        $(document).attr("title", name);
-    //        otherMazeBoard = $("#otherMazeCanvas").mazeBoard(recData, null, "draw");
-
-    //    },
-    //    error: function (result) { alert("error " + result[0]); }
-    //});
 });
 
 
@@ -110,17 +87,6 @@ $("#joinGame").click(function () {
         var game = $("#Games").val();
         multiGame.server.joinTo(game);
     });
-
-    //$.ajax({
-    //    type: "GET",
-    //    contentType: "application/json; charset=utf-8",
-    //    dataType: "json",
-    //    url: "../api/MultiPlayer/JoinGame/" + game ,
-    //    success: function (recData) {
-    //        $(document).attr("title", game);
-    //    },
-    //    error: function (result) { alert("error " + result[0]); }
-    //});
 });
 
 
@@ -138,17 +104,6 @@ $("#Games").click(function () {
     $.connection.hub.start().done(function () {
         multiGame.server.getList();
     });
-
-        //$.ajax({
-        //    type: "GET",
-        //    contentType: "application/json; charset=utf-8",
-        //    dataType: "json",
-        //    url: "../api/MultiPlayer/GetList",
-        //    success: function (recData) {
-        //        loadItems(recData);
-        //    },
-        //    error: function (result) { alert("error " + result[0]); }
-        //});
 });
 
 
@@ -157,12 +112,9 @@ function movePlayer(event) {
 }
 
 function moveOneStep(key) {
-
-
     var mazeStr = myMazeBoard.maze.Maze;
     var newRow = myMazeBoard.currentRow;
     var newCol = myMazeBoard.currentCol;
-
     switch (key) {
         case 37:
             newCol -= 1;

@@ -33,6 +33,10 @@ $(document).on({
 
 $("#startGame").click(function () {
     var name = $("#mazeName").val();
+    if (name === "") {
+        alert("please write a name for the game");
+        return;
+    }
     var rows = $("#rows").val();
     var cols = $("#cols").val();
     var operation = "draw";

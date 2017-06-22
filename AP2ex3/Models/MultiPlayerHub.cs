@@ -14,14 +14,22 @@ namespace AP2ex3
     public class MultiPlayerHub : Hub
     {
         private static IModel model = new Model();
-
+        /// <summary>
+        /// start the game
+        /// </summary>
+        /// <param name="name"> the name of the game</param>
+        /// <param name="rows">num of rows </param>
+        /// <param name="cols">num of cols</param>
         public void StartGame(string name, int rows, int cols)
         {
             // current player
             string clientId = Context.ConnectionId;
             model.AddStartGame(name, rows, cols, clientId);
         }
-
+        /// <summary>
+        /// join a game
+        /// </summary>
+        /// <param name="name"> the name of the game</param>
         public void JoinTo(string name)
         {
             // current player
@@ -41,7 +49,11 @@ namespace AP2ex3
             //Clients.Client(opponentId).drawBoard("competitorCanvas", maze,
             //    "Views/Images/pokemon.gif", "Views/Images/Exit.png", false);
         }
-
+        /// <summary>
+        /// make a move in the game
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="col"></param>
         public void Play(int row, int col)
         {
             string playerId = Context.ConnectionId;

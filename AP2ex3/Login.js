@@ -13,8 +13,6 @@ $(document).on({
     ajaxStart: function () { $body.addClass("loading"); },
     ajaxStop: function () { $body.removeClass("loading"); }
 });
-
-
 function invalidUser(jqXHR) {
     if (jqXHR.status === 409) {
         alert("wrong password");
