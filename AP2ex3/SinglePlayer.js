@@ -61,90 +61,6 @@ $("#startGame").click(function () {
 });
 
 
-//(function ($) {
-
-//    function drawMaze(mazeCanvas, currMaze) {
-
-//            var maze = currMaze.maze;
-//            currMaze.context = mazeCanvas.getContext("2d");
-//            var rows = maze.Rows;
-//            var cols = maze.Cols;
-//            currMaze.cellWidth = mazeCanvas.width / cols;
-//            currMaze.cellHeight = mazeCanvas.height / rows;
-//            var cellWidth = mazeCanvas.width / cols;
-//            var cellHeight = mazeCanvas.height / rows;
-//            for (var i = 0; i < rows; i++) {
-//                for (var j = 0; j < cols; j++) {
-//                    if (i == maze.Start.Row && j == maze.Start.Col) {
-
-//                        currMaze.context.drawImage(minion, cellWidth * j, cellHeight * i,
-//                            cellWidth, cellHeight);
-//                        currMaze.currentRow = i;
-//                        currMaze.currentCol = j;
-//                    }
-//                    if (i == maze.End.Row && j == maze.End.Col) {
-//                        currMaze.context.drawImage(exit, cellWidth * j, cellHeight * i,
-//                            cellWidth, cellHeight);
-//                    }
-
-//                    if (maze.Maze[(i * cols) + j] == 1) {
-//                        currMaze.context.fillStyle = "Black";
-//                        currMaze.context.fillRect(cellWidth * j, cellHeight * i,
-//                            cellWidth, cellHeight);
-//                    }
-
-//                }
-//            }
-//    };
-
-//    function clearMaze(mazeCanvas, currMaze) {
-//        var maze = currMaze.maze;
-//        currMaze.context = mazeCanvas.getContext("2d");
-//        var rows = maze.Rows;
-//        var cols = maze.Cols;
-//        currMaze.cellWidth = mazeCanvas.width / cols;
-//        currMaze.cellHeight = mazeCanvas.height / rows;
-//        var cellWidth = mazeCanvas.width / cols;
-//        var cellHeight = mazeCanvas.height / rows;
-//        for (var i = 0; i < rows; i++) {
-//            for (var j = 0; j < cols; j++) {
-//                //currMaze.context.strokeStyle = "#White";
-//                //currMaze.context.strokeRect(cellWidth * j, cellHeight * i,
-//                //    cellWidth, cellHeight);
-//                currMaze.context.fillStyle = "White";
-//                currMaze.context.fillRect(cellWidth * j, cellHeight * i,
-//                    cellWidth, cellHeight);
-
-//            }
-//        }
-//    };
-
-
-//    $.fn.mazeBoard = function (data, callBackOnMove) {
-//        var currentBoard = {
-//            maze: data,
-//            rows: data.Rows,
-//            cols: data.Cols,
-//            startPos: data.Start,
-//            exitPos: data.End,
-//            minion: document.getElementById("minion"),
-//            exit: document.getElementById("exit"),
-//            currentRow: 0,
-//            currentCol: 0,
-//            context: null,
-//            cellWidth: 0,
-//            cellHeight: 0,
-//            gameOn: true
-//        };
-//        clearMaze(this[0], currentBoard);
-//        drawMaze(this[0], currentBoard);
-//        document.addEventListener("keydown", callBackOnMove);
-//        return currentBoard;
-//    };
-//})(jQuery);
-
-
-
 function movePlayer(event) {
     moveOneStep(event.keyCode);
 }
@@ -184,6 +100,7 @@ function moveOneStep(key) {
     if (myMazeBoard.exitPos.Row == newRow && myMazeBoard.exitPos.Col == newCol) {
         alert("You won!!!");
         myMazeBoard.gameOn = false;
+        window.location.replace("MainMenu.html");
     }
 }
 
@@ -209,7 +126,7 @@ function setCurrentPos(newRow, newCol) {
 }
 
 $("#solveGame").click(function () {
-    var name = $("#mazeName").val();
+    var name = myMazeBoard.maze.Name;
     var algo = $("#searchAlgorithem").val();
 
     $.ajax({

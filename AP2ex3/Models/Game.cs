@@ -11,10 +11,6 @@ using Microsoft.AspNet.SignalR.Hubs;
 
 namespace AP2ex3.Models
 {
-    //public delegate void ChangedEventHandler(object sender, EventArgs e);
-
-    //public delegate void ClienetPlayedEventHandler(Direction direction);
-
 
     /// <summary>
     /// Game class
@@ -23,13 +19,7 @@ namespace AP2ex3.Models
     {
         private string client1;
         private string client2;
-        private Direction guestCurrentDirection;
-        private Direction otherPlayerCurrDirection;
         private Maze maze;
-
-        //public event ChangedEventHandler SomebodyClosedTheGameEvent;
-        //public event ClienetPlayedEventHandler GuestPlayedEvent;
-        //public event ClienetPlayedEventHandler HostPlayActionOccurd;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Game"/> class.
@@ -42,7 +32,9 @@ namespace AP2ex3.Models
             this.maze = maze;
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public Maze Maze
         {
             get { return maze; }
@@ -52,29 +44,6 @@ namespace AP2ex3.Models
             }
         }
 
-
-        //public Direction OtherPlayerCurrDirection
-        //{
-        //    get { return otherPlayerCurrDirection; }
-        //    set
-        //    {
-        //        otherPlayerCurrDirection = value;
-        //        HostPlayActionOccurd?.Invoke(otherPlayerCurrDirection);
-        //    }
-        //}
-
-
-        //public Direction GuestCurrentDirection
-        //{
-        //    get { return guestCurrentDirection; }
-        //    set
-        //    {
-        //        guestCurrentDirection = value;
-        //        GuestPlayedEvent?.Invoke(guestCurrentDirection);
-        //    }
-        //}
-
-
         /// <summary>
         /// Joins the specified client.
         /// </summary>
@@ -82,8 +51,6 @@ namespace AP2ex3.Models
         public void Join(string client)
         {
             this.client2 = client;
-            // this.SendToClients();
-
         }
         /// <summary>
         /// Gets the first client.
@@ -101,22 +68,7 @@ namespace AP2ex3.Models
         {
             return this.client2;
         }
-        /// <summary>
-        /// Sends to clients.
-        /// </summary>
-        public void SendToClients()
-        {
-            //NetworkStream stream = client1.GetStream();
-            //StreamReader reader = new StreamReader(stream);
-            //StreamWriter writer = new StreamWriter(stream);
-            //writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
-            //writer.Flush();
-            //stream = client2.GetStream();
-            //reader = new StreamReader(stream);
-            //writer = new StreamWriter(stream);
-            //writer.WriteLine(maze.ToJSON().Replace("\r\n", ""));
-            //writer.Flush();
-        }
+
         /// <summary>
         /// Gets the maze.
         /// </summary>

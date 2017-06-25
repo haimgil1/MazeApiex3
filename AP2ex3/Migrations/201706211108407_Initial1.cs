@@ -7,14 +7,23 @@ namespace AP2ex3.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Users", "Wins", c => c.Int(nullable: false));
-            AddColumn("dbo.Users", "Losses", c => c.Int(nullable: false));
+            CreateTable(
+                "dbo.Users",
+                c => new
+                    {
+                        UserName = c.String(nullable: false, maxLength: 128),
+                        Email = c.String(),
+                        Password = c.String(nullable: false),
+                        Wins = c.Int(nullable: false),
+                        Losses = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.UserName);
+            
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Users", "Losses");
-            DropColumn("dbo.Users", "Wins");
+            DropTable("dbo.Users");
         }
     }
 }

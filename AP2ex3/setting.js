@@ -10,10 +10,12 @@ window.onload = function () {
 
     $("#settingRows").val(localStorage.Rows);
     $("#settingCols").val(localStorage.Cols);
-    $("#settingAlgo").val(localStorage.Algorithm);
-   // document.getElementById("settingRows").value = localStorage.getItem("Rows");
-    //document.getElementById("settingCols").value = localStorage.getItem("Cols");
-    //document.getElementById("settingAlgo").text = localStorage.getItem("Algorithm");
+    var select = document.querySelector(".algo");
+    var selectOption = select.options[select.selectedIndex];
+    var lastSelected = localStorage.Algorithm;
+    if (lastSelected) {
+        select.value = lastSelected;
+    }
 
 }
 
@@ -22,10 +24,15 @@ window.onload = function () {
 
 
 $("#submitbtn").click(function () {
-
+    alert("Settings as been saved succefully!");
     localStorage.setItem('Rows', $("#settingRows").val());
     localStorage.setItem('Cols', $("#settingCols").val());
     localStorage.setItem('Algorithm', $("#settingAlgo").val());
+    window.location.replace("MainMenu.html");
+});
 
+$("#canceltbtn").click(function () {
+
+    window.location.replace("MainMenu.html");
 });
 

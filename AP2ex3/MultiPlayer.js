@@ -10,20 +10,21 @@ window.onload = function () {
     if (!localStorage.length) {
         localStorage.setItem("Rows", "10");
         localStorage.setItem("Cols", "10");
+        localStorage.setItem("Algorithm", "1");
+
     }
 
     $("#rows").val(localStorage.Rows);
     $("#cols").val(localStorage.Cols);
-    // document.getElementById("settingRows").value = localStorage.getItem("Rows");
-    //document.getElementById("settingCols").value = localStorage.getItem("Cols");
-    //document.getElementById("settingAlgo").text = localStorage.getItem("Algorithm");
+    $("#searchAlgorithem").val(localStorage.Algorithm);
+
 }
 
 multiGame.client.sendMaze = function (recData) {
     $("body").removeClass("loading");
     myMazeBoard = $("#myMazeCanvas").mazeBoard(recData, movePlayer, "draw");
     $(document).attr("title", name);
-    otherMazeBoard = $("#otherMazeCanvas").mazeBoard(recData, null, "draw");
+    otherMazeBoard = $("#otherMazeCanvas").mazeBoard(recData, null, "drawOther");
 };
 
 
@@ -144,6 +145,7 @@ function moveOneStep(key) {
 
     // Check if got to the end point.
     if (myMazeBoard.exitPos.Row == newRow && myMazeBoard.exitPos.Col == newCol) {
+        alert("You won!!!");
         var userName = sessionStorage.getItem("userName");
         $.ajax({
             type: "PUT",
@@ -151,7 +153,6 @@ function moveOneStep(key) {
             dataType: "json",
             url: "/api/Users/" + userName + "/Win",
             success: function (recData) {
-                alert("You won!!!");
                 myMazeBoard.gameOn = false;
                 $.connection.hub.start().done(function () {
                     multiGame.server.closeTheGame(myMazeBoard.maze.Name);

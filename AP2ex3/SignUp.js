@@ -8,10 +8,24 @@ window.onload = function () {
 function validatePassword() {
     var password = document.getElementById("signupPassword");
     var confirmPassword = document.getElementById("signupConfirmPassword");
+    var email = document.getElementById("signupEmail");
+
+    if (email.value.indexOf("@") == -1)
+    {
+        alert("email must conatin @ ");
+        return false;
+    }
+    if (password.value.length < 6) {
+        alert("password must be at least 6 characters long");
+        return false;
+    }
+
     if (password.value != confirmPassword.value) {
         alert("password dont match -  please try again");
         return false;
     }
+
+
     return true;
 }
 

@@ -178,7 +178,6 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\MultiPlayerController.cs" />
-    <Compile Include="Controllers\MultiPlayerHub1.cs" />
     <Compile Include="Controllers\SingleGameController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">

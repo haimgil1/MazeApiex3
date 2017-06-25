@@ -277,6 +277,10 @@ namespace AP2ex3.Models
             mazesMutex.ReleaseMutex();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         public void DeleteSingleGame(string name)
         {
             mazes.Remove(name);

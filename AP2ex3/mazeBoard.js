@@ -16,8 +16,7 @@
         for (var i = 0; i < rows; i++) {
             for (var j = 0; j < cols; j++) {
                 if (i == maze.Start.Row && j == maze.Start.Col) {
-
-                    currMaze.context.drawImage(minion, cellWidth * j, cellHeight * i,
+                    currMaze.context.drawImage(currMaze.minion, cellWidth * j, cellHeight * i,
                         cellWidth, cellHeight);
                     currMaze.currentRow = i;
                     currMaze.currentCol = j;
@@ -39,7 +38,7 @@
 
 
 
-    $.fn.mazeBoard = function (data, callBackOnMove,operation) {
+    $.fn.mazeBoard = function (data, callBackOnMove, operation) {
         var currentBoard = {
             maze: data,
             rows: data.Rows,
@@ -48,6 +47,7 @@
             exitPos: data.End,
             minion: document.getElementById("minion"),
             exit: document.getElementById("exit"),
+            secPlayer: document.getElementById("secPlayer"),
             currentRow: 0,
             currentCol: 0,
             context: null,
@@ -56,7 +56,13 @@
             gameOn: true
         };
 
-        if (operation == "draw")
+        if (operation == "drawOther")
+        {
+            currentBoard.minion = document.getElementById("secPlayer");
+            drawMaze(this[0], currentBoard);
+
+        }
+        else if (operation == "draw")
         {
             drawMaze(this[0], currentBoard);
         }

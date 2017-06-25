@@ -6,6 +6,9 @@ using System.Web;
 
 namespace AP2ex3.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class User
     {
         [Required]

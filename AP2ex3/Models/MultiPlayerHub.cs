@@ -42,12 +42,6 @@ namespace AP2ex3
 
             string otherClientId = game.GetOpponent(clientId);
             Clients.Client(otherClientId).sendMaze(obj);
-
-
-            //// competitor
-            //string opponentId = model.GetCompetitorOf(clientId);
-            //Clients.Client(opponentId).drawBoard("competitorCanvas", maze,
-            //    "Views/Images/pokemon.gif", "Views/Images/Exit.png", false);
         }
         /// <summary>
         /// make a move in the game
@@ -60,12 +54,12 @@ namespace AP2ex3
             Game game = model.FindGameByClient(playerId);
             string otherClientId = game.GetOpponent(playerId);
             Clients.Client(otherClientId).sendDirection(row, col);
-            //string playerId = Context.ConnectionId;
-            //model.Play(direction, playerId);
-            //string opponentId = model.GetCompetitorOf(playerId);
-            //Clients.Client(opponentId).moveOtherPlayer(direction);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
         public void CloseTheGame(string name)
         {
             string playerId = Context.ConnectionId;
@@ -73,13 +67,11 @@ namespace AP2ex3
             string otherClientId = game.GetOpponent(playerId);
             model.DeleteGameFromPlayingGames(name);
             Clients.Client(otherClientId).closeGame();
-            //model.Close(nameOfGame);
-            //string opponentId = model.GetCompetitorOf(Context.ConnectionId);
-            //// TODO: implement 'closeGame' method in client side.
-            //Clients.Client(opponentId).closeGame();
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         public void GetList()
         {
             string clientId = Context.ConnectionId;
